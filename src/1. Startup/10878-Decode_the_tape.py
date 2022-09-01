@@ -16,3 +16,5 @@ while current_line != "___________"[2:-1]:
     output += chr(int(num, 2))
     current_line = input()[2:-1]
 print(output, end="")
+
+## O(n) n is line with char

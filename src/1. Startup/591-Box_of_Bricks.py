@@ -29,3 +29,5 @@ while num_walls != 0:
 
     counter += 1
     num_walls = int(input())
+
+### Each is O(n)

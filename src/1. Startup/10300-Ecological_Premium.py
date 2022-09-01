@@ -22,3 +22,5 @@ for i in range(num_testcases):
         ]
         burden += square_meters * eco_friendlyness
     print(burden)
+
+## Each case is O(n)
