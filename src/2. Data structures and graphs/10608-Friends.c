@@ -1,5 +1,5 @@
-/* 
-https://onlinejudge.org/external/106/10608.pdf 
+/*
+https://onlinejudge.org/external/106/10608.pdf
 https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 */
 
@@ -10,7 +10,7 @@ https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 
 typedef struct Node {
     int size;
-    Node *parent;
+    struct Node *parent;
 } Node;
 
 int max_friend_circle;
@@ -21,7 +21,7 @@ void init_nodes(int n, Node **nodes) {
     for (i; i < n; i++) {
         nodes[i] = (Node *)malloc(sizeof(Node));
         current_node = nodes[i];
-        current_node->size = 0;
+        current_node->size = 1;
         current_node->parent = current_node;
     }
 }
@@ -64,14 +64,16 @@ int main() {
 
         scanf("%d%d", &people, &links);
 
-        Node **nodes = (Node *)malloc(people * sizeof(Node));
+        Node **nodes = (Node **)malloc(people * sizeof(Node *));
         init_nodes(people, nodes);
 
         max_friend_circle = 1;
 
         while (links--) {
-            scanf("%d%d", person1, person2);
+            scanf("%d%d", &person1, &person2);
+            Union(nodes[person1-1], nodes[person2-1]);
         }
+        printf("%d\n", max_friend_circle);
 
         int i = 0;
         for (i; i < people; i++) {
