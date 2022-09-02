@@ -1,4 +1,7 @@
-/* https://onlinejudge.org/external/106/10608.pdf */
+/* 
+https://onlinejudge.org/external/106/10608.pdf 
+https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,10 +9,11 @@
 #define MAX_NODES 30000
 
 typedef struct Node {
-    int num_friends;
-    int rank;
+    int size;
     Node *parent;
 } Node;
+
+int max_friend_circle;
 
 void init_nodes(int n, Node **nodes) {
     int i = 0;
@@ -17,9 +21,36 @@ void init_nodes(int n, Node **nodes) {
     for (i; i < n; i++) {
         nodes[i] = (Node *)malloc(sizeof(Node));
         current_node = nodes[i];
-        current_node->num_friends = 1;
-        current_node->rank = 0;
+        current_node->size = 0;
         current_node->parent = current_node;
+    }
+}
+
+/* TODO Implement tree flatening */
+Node *FindRoot(Node *node) {
+    while (node->parent != node) {
+        node = node->parent;
+    }
+    return node;
+}
+
+/* union by size */
+void Union(Node *node_big, Node *node_small) {
+    node_big = FindRoot(node_big);
+    node_small = FindRoot(node_small);
+
+    if (node_big != node_small) {
+        if (node_big->size < node_small->size) {
+            Node *temp = node_big;
+            node_big = node_small;
+            node_small = temp;
+        }
+        node_small->parent = node_big;
+        node_big->size += node_small->size;
+
+        if (max_friend_circle < node_big->size) {
+            max_friend_circle = node_big->size;
+        }
     }
 }
 
@@ -36,7 +67,7 @@ int main() {
         Node **nodes = (Node *)malloc(people * sizeof(Node));
         init_nodes(people, nodes);
 
-        int max_friend_circle = 1;
+        max_friend_circle = 1;
 
         while (links--) {
             scanf("%d%d", person1, person2);
