@@ -30,6 +30,9 @@ int main() {
         } else {
             printf("NO\n");
         }
-        if (num_tests) printf("");
+
+        if (num_tests) {
+            printf("\n");
+        }
     }
 }
