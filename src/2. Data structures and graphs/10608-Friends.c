@@ -26,10 +26,12 @@ void init_nodes(int n, Node **nodes) {
     }
 }
 
-/* TODO Implement tree flatening */
+/* find with Path splitting, one pass path compression */
 Node *FindRoot(Node *node) {
     while (node->parent != node) {
+        Node *temp = node;
         node = node->parent;
+        temp->parent = node->parent;
     }
     return node;
 }
