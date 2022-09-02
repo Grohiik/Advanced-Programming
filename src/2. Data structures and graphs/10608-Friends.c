@@ -6,8 +6,6 @@ https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_NODES 30000
-
 typedef struct Node {
     int size;
     struct Node *parent;
@@ -16,9 +14,9 @@ typedef struct Node {
 int max_friend_circle;
 
 void init_nodes(int n, Node **nodes) {
-    int i = 0;
+    int i;
     Node *current_node;
-    for (i; i < n; i++) {
+    for (i = 0; i < n; i++) {
         nodes[i] = (Node *)malloc(sizeof(Node));
         current_node = nodes[i];
         current_node->size = 1;
@@ -77,8 +75,8 @@ int main() {
         }
         printf("%d\n", max_friend_circle);
 
-        int i = 0;
-        for (i; i < people; i++) {
+        int i;
+        for (i = 0; i < people; i++) {
             free(nodes[i]);
         }
         free(nodes);
