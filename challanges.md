@@ -4,7 +4,7 @@ Section 1. Startup problems
 - [x] 10878 - Decode the tape  
 
 Section 2. Data structures and graph traversals  
-- [ ] 839 - Not so Mobile   
+- [x] 839 - Not so Mobile   
 - [x] 10608 - Friends  
 - [ ] 10307 - Killing Aliens in Borg Maze  
 
