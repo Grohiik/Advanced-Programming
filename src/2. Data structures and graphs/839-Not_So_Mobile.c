@@ -12,7 +12,7 @@ int mobile() {
     if (wl == 0) wl = mobile();
     if (wr == 0) wr = mobile();
 
-    if ((wl * dl) != (wr * dr)) {
+    if ((wl * dl) != (wr * dr) || !(dl && dr)) {
         return 0;
     } else {
         return wl + wr;
@@ -24,7 +24,6 @@ int main() {
     scanf("%d", &num_tests);
 
     while (num_tests--) {
-        scanf("", NULL);
         if (mobile()) {
             printf("YES\n");
         } else {
