@@ -16,6 +16,7 @@ int main() {
             needs_to_be_moved += current_house_request;
             total_work += abs(needs_to_be_moved);
         }
+        printf("%lld\n", total_work);
         scanf("%d", &inhabitants);
     }
 }
