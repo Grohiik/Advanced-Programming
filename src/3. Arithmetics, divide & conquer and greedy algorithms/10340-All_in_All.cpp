@@ -14,6 +14,7 @@ vector<string> split(string input, const string &delimiter) {
         words.push_back(input.substr(0, pos));
         input.erase(0, pos + delimiter.length());
     }
+    words.push_back(input);
     return words;
 }
 
@@ -23,18 +24,22 @@ int main() {
     while (getline(cin, input)) {
         auto splitstring = split(input, space_delimiter);
         int counter = 0;
-        bool sequence = true;
+        bool last_check = false;
         for (auto const &letter : splitstring[0]) {
-            for (; counter < splitstring[1].length(); counter) {
+            while (counter < splitstring[1].length()) {
                 if (letter == splitstring[1][counter]) {
+                    counter++;
+                    last_check = true;
                     break;
                 }
+                counter++;
+                last_check = false;
             }
         }
-        if (counter >= splitstring[1].length()) {
-            cout << "NO\n";
+        if (counter >= splitstring[1].length() && !last_check) {
+            cout << "No\n";
         } else {
-            cout << "YES\n";
+            cout << "Yes\n";
         }
     }
 }

@@ -11,7 +11,7 @@ Section 2. Data structures and graph traversals
 Section 3. Arithmetics, divide & conquer and greedy algorithms  
 - [x] 374 - Big Mod  
 - [x] 11054 - Wine trading in Gergovia  
-- [ ] 10340 - All in All 
+- [x] 10340 - All in All 
 
 Section 4. Dynamic programming and heuristics  
 - [ ] 10943 - How do you add?  
