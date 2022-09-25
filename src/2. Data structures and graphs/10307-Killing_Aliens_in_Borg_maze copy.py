@@ -1,6 +1,9 @@
 # https://onlinejudge.org/external/103/10307.pdf
 
 
+import re
+
+
 def shortest_path(graph, start, end):
     paths = [[(start, start)]]
     visited = [start]
@@ -17,7 +20,7 @@ def shortest_path(graph, start, end):
 
         if end in next_nodes:
             path.append((current_node, end))
-            return path[1:]
+            return (start, end, len(path[1:]))
 
         for next_node in next_nodes:
             # [:] is so it get value not referance
@@ -37,17 +40,20 @@ def shortest_path(graph, start, end):
 
 def MST(graph, start):
     nodes = []
-    stack = [start]
+    stack = [(start, 0)]
 
     while stack:
         current_node = stack.pop()
-        nodes.append(current_node)
-        stack += [j for (i,j) in graph if i == current_node and not j in nodes]
+        if not any(current_node[0] == node for (node, node_weight) in nodes):
+            nodes.append(current_node)
 
-        # stack.extend([j for (i, j) in edges if not j in nodes])
-
-        # print(nodes)
-        # print(stack)
+        stack += [
+            (j, weight)
+            for (i, j, weight) in graph
+            if i == current_node[0]
+            and not any(j == node for (node, node_weight) in nodes)
+        ]
+        stack.sort(key=lambda a: a[1], reverse=True)
 
     return nodes
 
@@ -59,11 +65,11 @@ def main():
 
         matrix = [input() for x in range(height)]
 
-        aliens = [
+        nodes = [
             (i, j)
             for i, matrix_i in enumerate(matrix)
             for j, value in enumerate(matrix_i)
-            if value == "A"
+            if value == "A" or value == "S"
         ]
         start = [
             (i, j)
@@ -74,11 +80,14 @@ def main():
         if start:
             start = start[0]
 
-        graph = list(
-            set().union(*[shortest_path(matrix, start, alien) for alien in aliens])
-        )
-        # print(graph)
-        print(len(MST(graph, start)))
+        graph = []
+        for node in nodes:
+            for node2 in nodes:
+                if node != node2:
+                    graph.append(shortest_path(matrix, node, node2))
+
+        tree = MST(graph, start)
+        print(sum([weight for (i, weight) in tree]))
 
         cases -= 1
 
