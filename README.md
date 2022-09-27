@@ -10,7 +10,7 @@ Section 1. Startup problems
 Section 2. Data structures and graph traversals  
 - [x] 839 - Not so Mobile   
 - [x] 10608 - Friends  
-- [ ] 10307 - Killing Aliens in Borg Maze  
+- [x] 10307 - Killing Aliens in Borg Maze  
 
 Section 3. Arithmetics, divide & conquer and greedy algorithms  
 - [x] 374 - Big Mod  

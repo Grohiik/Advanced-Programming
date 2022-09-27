@@ -1,9 +1,6 @@
 # https://onlinejudge.org/external/103/10307.pdf
 
 
-import re
-
-
 def shortest_path(graph, start, end):
     paths = [[(start, start)]]
     visited = [start]
