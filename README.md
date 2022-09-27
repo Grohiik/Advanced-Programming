@@ -18,7 +18,7 @@ Section 3. Arithmetics, divide & conquer and greedy algorithms
 - [x] 10340 - All in All 
 
 Section 4. Dynamic programming and heuristics  
-- [ ] 10943 - How do you add?  
+- [x] 10943 - How do you add?  
 - [ ] 116 - Unidirectional TSP  
 - [ ] 185 - Roman Numerals  
 
